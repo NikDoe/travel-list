@@ -4,11 +4,6 @@ import Logo from "./components/Logo";
 import PackingList from "./components/PackingList";
 import Stats from "./components/Stats";
 
-const initialItems = [
-	{ id: 1, description: "Passports", quantity: 2, packed: true },
-	{ id: 2, description: "Socks", quantity: 12, packed: false },
-];
-
 export type TItem = {
     id: number,
     description: string,
@@ -17,7 +12,7 @@ export type TItem = {
 }
 
 function App() {
-	const [list, setList] = useState<TItem[]>(initialItems);
+	const [list, setList] = useState<TItem[]>([]);
 
 	const togglePacked = (id: number) => {
 		setList(
