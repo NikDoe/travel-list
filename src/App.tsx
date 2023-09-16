@@ -28,11 +28,19 @@ function App() {
 		);
 	};
 
+	const handeDeleteItem = (id: number) => {
+		setList(prevItems => prevItems.filter(item => item.id !== id));
+	};
+
 	return (
 		<div className="app">
 			<Logo />
 			<Form onAddItems={handleAddItem} />
-			<PackingList list={list} onToggle={togglePacked} />
+			<PackingList 
+				list={list}
+				onToggleItem={togglePacked}
+				onDeleteItem={handeDeleteItem}
+			/>
 			<Stats list={list} />
 		</div>
 	);

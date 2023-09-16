@@ -3,12 +3,14 @@ import { TItem } from "../App";
 
 type ListItemProps = {
     itemObject: TItem,
-	onToggle: (id: number) => void;
+	onToggleItem: (id: number) => void,
+	onDeleteItem: (id: number) => void
 }
 const ListItem: FC<ListItemProps> = function(props) {
 	const {
 		itemObject,
-		onToggle
+		onToggleItem,
+		onDeleteItem
 	} = props;
 
 	const {
@@ -24,10 +26,19 @@ const ListItem: FC<ListItemProps> = function(props) {
 
 	return (
 		<li>
+			<input 
+				type="checkbox"
+				checked={packed}
+				onChange={() => onToggleItem(id)}
+			/>
 			<p style={styleObject}>
 				{quantity} {description}
 			</p>
-			<button onClick={() => onToggle(id)}>❌</button>
+			<button
+				onClick={() => onDeleteItem(id)}
+			>
+				❌
+			</button>
 		</li>
 	);
 };
