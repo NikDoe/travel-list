@@ -14,6 +14,10 @@ export type TItem = {
 function App() {
 	const [list, setList] = useState<TItem[]>([]);
 
+	const handleAddItem = (item: TItem) => {
+		setList(prevItems => [...prevItems, item]);
+	};
+
 	const togglePacked = (id: number) => {
 		setList(
 			prevList => prevList.map(
@@ -27,7 +31,7 @@ function App() {
 	return (
 		<div className="app">
 			<Logo />
-			<Form setList={setList} />
+			<Form onAddItems={handleAddItem} />
 			<PackingList list={list} onToggle={togglePacked} />
 			<Stats list={list} />
 		</div>

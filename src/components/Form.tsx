@@ -1,4 +1,4 @@
-import { Dispatch, FC, FormEvent, SetStateAction, useState } from "react";
+import { FC, FormEvent, useState } from "react";
 import { TItem } from "../App";
 
 interface FormData {
@@ -7,10 +7,10 @@ interface FormData {
 }
 
 type FormProps = {
-	setList: Dispatch<SetStateAction<TItem[]>>
+	onAddItems: (item: TItem) => void;
 }
 
-const Form: FC<FormProps> = function({ setList }) {
+const Form: FC<FormProps> = function({ onAddItems }) {
 	const initialFormData: FormData = {
 		description: "",
 		quantity: "1",
@@ -41,7 +41,7 @@ const Form: FC<FormProps> = function({ setList }) {
 			description: formData.description
 		};		
 
-		setList(currList => [...currList, newItem]);
+		onAddItems(newItem);
 		setFormData(initialFormData);
 	};
 
