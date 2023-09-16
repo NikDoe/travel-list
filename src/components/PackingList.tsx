@@ -4,9 +4,14 @@ import ListItem from "./ListItem";
 
 type PackingListProps = {
 	list: TItem[],
+	onToggle: (id: number) => void;
 }
 
-const PackingList: FC<PackingListProps> = function({ list }) {
+const PackingList: FC<PackingListProps> = function(props) {
+	const {
+		list,
+		onToggle
+	} = props;
 
 	return (
 		<div className="list">
@@ -17,6 +22,7 @@ const PackingList: FC<PackingListProps> = function({ list }) {
 							<ListItem 
 								key={item.id} 
 								itemObject={item} 
+								onToggle={onToggle}
 							/>
 						)
 					)

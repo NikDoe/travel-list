@@ -3,9 +3,16 @@ import { TItem } from "../App";
 
 type ListItemProps = {
     itemObject: TItem,
+	onToggle: (id: number) => void;
 }
-const ListItem: FC<ListItemProps> = function({ itemObject }) {
+const ListItem: FC<ListItemProps> = function(props) {
 	const {
+		itemObject,
+		onToggle
+	} = props;
+
+	const {
+		id,
 		description,
 		quantity,
 		packed
@@ -17,13 +24,10 @@ const ListItem: FC<ListItemProps> = function({ itemObject }) {
 
 	return (
 		<li>
-			<p>{quantity}</p>
-			<b 
-				style={styleObject}
-			>
-				{description}
-			</b>
-			<button>❌</button>
+			<p style={styleObject}>
+				{quantity} {description}
+			</p>
+			<button onClick={() => onToggle(id)}>❌</button>
 		</li>
 	);
 };

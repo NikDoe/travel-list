@@ -9,7 +9,6 @@ const initialItems = [
 	{ id: 2, description: "Socks", quantity: 12, packed: false },
 ];
 
-
 export type TItem = {
     id: number,
     description: string,
@@ -20,11 +19,21 @@ export type TItem = {
 function App() {
 	const [list, setList] = useState<TItem[]>(initialItems);
 
+	const togglePacked = (id: number) => {
+		setList(
+			prevList => prevList.map(
+				(item: TItem) => item.id === id 
+					? { ...item, packed: !item.packed } 
+					: item
+			)
+		);
+	};
+
 	return (
 		<div className="app">
 			<Logo />
 			<Form setList={setList} />
-			<PackingList list={list} />
+			<PackingList list={list} onToggle={togglePacked} />
 			<Stats list={list} />
 		</div>
 	);
