@@ -32,6 +32,12 @@ function App() {
 		setList(prevItems => prevItems.filter(item => item.id !== id));
 	};
 
+	const handleReset = () => {
+		const isConfirm = window.confirm('Вы уверены что хотите удалить все записи?');
+
+		if(isConfirm) setList([]);
+	};
+
 	return (
 		<div className="app">
 			<Logo />
@@ -40,6 +46,7 @@ function App() {
 				list={list}
 				onToggleItem={togglePacked}
 				onDeleteItem={handeDeleteItem}
+				onReset={handleReset}
 			/>
 			<Stats list={list} />
 		</div>
